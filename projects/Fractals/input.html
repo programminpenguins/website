@@ -1,0 +1,110 @@
+<html>
+    <head>
+	<title>Fractal Data</title>
+	<script src="storage.js"></script>
+    </head>
+    <body style="padding: 0; margin: 0;">
+	<div style="width: 100%; max-height: 2em;">
+	    <a href="index.html">FRACTAL</a>
+	    <button onclick="resetToDragon()">reset to Dragon</button>
+	    <button onclick="resetToKochCurve()">reset to Koch Curve</button>
+	    <button onclick="resetToSerpinskiTriangle()">reset to Serpinski Triangle</button>
+	    <select id="theme" onchange="changeTheme()">
+		<option value="ambiance">ambiance</option>
+		<option value="chaos">chaos</option>
+		<option value="chrome">chrome</option>
+		<option value="clouds_midnight">clouds midnight</option>
+		<option value="clouds">clouds</option>
+		<option value="cobalt">cobalt</option>
+		<option value="crimson_editor">crimson editor</option>
+		<option value="dawn">dawn</option>
+		<option value="dreamweaver">dreamweaver</option>
+		<option value="eclipse">eclipse</option>
+		<option value="github">gitHub</option>
+		<option value="idle_fingers">idle fingers</option>
+		<option value="katzenmilch">katzenmilch</option>
+		<option value="kr">kr</option>
+		<option value="kuroir">kuroir</option>
+		<option value="merbivore_soft">merbivore soft</option>
+		<option value="merbivore">merbivore</option>
+		<option value="mono_industrial">mono industrial</option>
+		<option value="monokai">monokai</option>
+		<option value="pastel_on_dark">pastel on dark</option>
+		<option value="solarized_dark">solarized dark</option>
+		<option value="solarized_light">solarized light</option>
+		<option value="terminal">terminal</option>
+		<option value="textmate">textmate</option>
+		<option value="tomorrow_night_blue">tomorrow night blue</option>
+		<option value="tomorrow_night_bright">tomorrow night bright</option>
+		<option value="tomorrow_night_eighties">tomorrow night eighties</option>
+		<option value="tomorrow_night">tomorrow night</option>
+		<option value="tomorrow">tomorrow</option>
+		<option value="twilight">twilight</option>
+		<option value="vibrant_ink">vibrant ink</option>
+		<option value="xcode">XCode</option>
+	    </select>
+	</div>
+	<div>
+	    <div id="data" style="padding: 0; margin: 0; width: 50%; display: inline-block; position: absolute; top: 2em; left: 0; bottom: 0;">
+		<table id="axiom">
+		    <tr>
+			<td>x</td>
+			<td><input type="number" id="axiom_x" onchange="changeAxiom_x(this.value)" />px</td>
+		    </tr>
+		    <tr>
+			<td>y</td>
+			<td><input type="number" id="axiom_y" onchange="changeAxiom_y(this.value)" />px</td>
+		    </tr>
+		    <tr>
+			<td>dir</td>
+			<td><input type="number" id="axiom_dir" onchange="changeAxiom_dir(this.value)" />deg</td>
+		    </tr>
+		    <tr>
+			<td>line</td>
+			<td><input type="text" id="axiom_line" onchange="changeAxiom_line(this.value)" /></td>
+		    </tr>
+		</table>
+		<table>
+		    <thead>
+			<tr>
+			    <th>Token</th>
+			    <th>Action</th>
+			    <th>Value</th>
+			    <th>Replacement</th>
+			    <th>Remove</th>
+			</tr>
+		    </thead>
+		    <tbody id="tokens">
+			
+		    </tbody>
+		    <tfoot>
+			<tr>
+			    <th>NewToken</th>
+			    <th>NewAction</th>
+			    <th>NewValue</th>
+			    <th>NewReplacement</th>
+			    <th>Add</th>
+			</tr>
+			<tr id="newToken">
+			    <td><input type="text" id="token_newToken" onchange="updateValue('token_newToken', this.value)" placeholder="token" value="" /></td>
+			    <td><input type="text" id="token_newToken_action" onchange="updateValue('token_newToken_action', this.value)" placeholder="action function" value="" /></td>
+			    <td><input type="text" id="token_newToken_value" onchange="updateValue('token_newToken_value', this.value)" placeholder="passed value" value="" /></td>
+			    <td><input type="text" id="token_newToken_replacement" onchange="updateValue('token_newToken_replacement', this.value)" placeholder="replacement" value="" /></td>
+			    <td><button onclick="addToken()"/>+</td>
+			</tr>
+		    </tfoot>
+		</table>
+	    </div><!--
+	    --><div id="actions" style="padding: 0; margin: 0; width: 50%; display: inline-block; position: absolute; top: 2em; right: 0; bottom: 0;" ></div>
+	    <script src="ace-min-noconflict/ace.js"></script>
+	    <script>
+		editor = ace.edit("actions");
+		editor.setTheme("ace/theme/github");
+		document.getElementById("theme").selectedIndex = 10;
+		editor.getSession().setMode("ace/mode/javascript");
+		editor.on("change", function update(e) {storageSaveActionsJS(editor.getValue())});
+	    </script>
+	</div>
+    </body>
+    <script src="input.js"></script>
+</html>

@@ -1,0 +1,17 @@
+<html>
+    <head>
+	<title>Fractal Viewer</title>
+	<script src="storage.js"></script>
+    </head>
+    <body  style="margin: 0em; padding: 0em;">
+	<canvas id="viewer" style="position: fixed; z-index: -1;"></canvas>
+	<button onclick="iterate()">Iterate</button>
+	<button onclick="resetFractal()">Reset</button>
+	<a href="input.html">INPUT</a>
+    </body>
+    <script src="fractal.js"></script>
+    <script> // in place of actions.js for new localStorage awesomeness
+	eval(localStorage.getItem("actionJS"));
+	turtleGo(); // draw it on load (2nd attempt);
+    </script>
+</html>
