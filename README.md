@@ -1,4 +1,4 @@
 website
 =======
 
-Programming Penguins Website
+Welcome to the Programming Penguins Website!
